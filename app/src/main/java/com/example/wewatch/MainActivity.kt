@@ -27,5 +27,5 @@ class MainActivity : ComponentActivity() {
 @Preview (showBackground = true)
 @Composable
 fun NewText(){
-    Text(text = "Hello Devolep")
+    Text(text = "Hello Devol")
 }
