@@ -44,21 +44,20 @@ dependencies {
     val moshi_version = "1.15.0"
     val room_version = "2.6.1"
 
-    // Add RecyclerView
+
     implementation(libs.androidx.recyclerview)
-    // Add LifeCycle&LiveData&ViewModel
+
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    // Add Room&Database
+
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     kapt("androidx.room:room-compiler:$room_version")
-    // Add Coroutines
+
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
-    // Add Moshi
     implementation (libs.moshi.kotlin)
     implementation(libs.moshi)
     kapt("com.squareup.moshi:moshi-kotlin-codegen:$moshi_version")
