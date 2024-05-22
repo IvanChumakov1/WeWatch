@@ -22,64 +22,58 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AddActivity : AppCompatActivity() {
+class AddActivity :  AppCompatActivity(), AddContract.ViewInterface {
     lateinit var titleEditText: EditText
     lateinit var releaseDateEditText: EditText
     lateinit var movieImageView: ImageView
+    private lateinit var addMoviePresenter: AddPresenter
+    fun setupPresenter() {
+        val dataSource = LocalDataSource(application)
+        addMoviePresenter = AddPresenter(this, dataSource)
+    }
+
+    fun setupViews() {
+        titleEditText = findViewById(R.id.movie_title)
+        releaseDateEditText = findViewById(R.id.movie_release_date)
+        movieImageView = findViewById(R.id.movie_imageview)
+    }
+
+    override fun returnToMain() {
+        setResult(Activity.RESULT_OK)
+        finish()
+    }
+
+
+    fun onClickAddMovie (view: View) {
+        val title = titleEditText.text.toString()
+        val releaseDate = releaseDateEditText.text.toString()
+        val posterPath = if (movieImageView.tag != null )
+            movieImageView.tag.toString() else ""
+        addMoviePresenter.addMovie (title, releaseDate, posterPath)
+    }
+
+    fun goToSearchMovieActivity(v: View) {
+        val title = titleEditText.text.toString()
+        val intent = Intent(this@AddActivity, SearchActivity::class.java)
+        intent.putExtra(SearchActivity.SEARCH_QUERY, title)
+        startActivityForResult(intent, SEARCH_MOVIE_ACTIVITY_REQUEST_CODE)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
-        enableEdgeToEdge()
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
-        val dataBase = MovieDB.getDb(this)
-        titleEditText = findViewById(R.id.movie_title)
-        val searchBtn = findViewById<ImageButton>(R.id.search_btn)
-        val addBtn = findViewById<Button>(R.id.add_movie)
-        releaseDateEditText = findViewById(R.id.movie_release_date)
-        movieImageView = findViewById(R.id.movie_imageview)
-        searchBtn.setOnClickListener {
-            if (titleEditText.text.isEmpty()) {
-                Toast.makeText(
-                    this,
-                    "Название фильма не может быть пустым",
-                    Toast.LENGTH_LONG
-                )
-                    .show()
-            }
-            else {
-                val title = titleEditText.text.toString()
-                val intent = Intent(this@AddActivity, SearchActivity::class.java)
-                intent.putExtra(SearchActivity.SEARCH_QUERY, title)
-                startActivityForResult(intent, SEARCH_ACTIVITY_REQUEST_CODE)
-            }
-        }
-
-        addBtn.setOnClickListener {
-            if (titleEditText.text.isEmpty() || releaseDateEditText.text.isEmpty()) {
-                Toast.makeText(
-                    this,
-                    "Поля 'Movie Title' и 'Yaer' не могут быть пустыми",
-                    Toast.LENGTH_LONG
-                )
-                    .show()
-            }
-            else {
-                if (movieImageView.tag == null) movieImageView.tag = ""
-                CoroutineScope(Dispatchers.IO).launch {
-                    val movie = Movie(null, titleEditText.text.toString(), releaseDateEditText.text.toString(), movieImageView.tag.toString())
-                    dataBase.getDao().insert(movie)
-                }
-                setResult(Activity.RESULT_OK)
-                finish()
-            }
-
-        }
+        setupPresenter()
+        setupViews()
     }
+
+    override fun displayMessage (message: String ) {
+        Toast.makeText( this@AddActivity , message,
+            Toast.LENGTH_LONG).show()
+    }
+    override fun displayError (message: String ) {
+        displayMessage (message)
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -95,6 +89,6 @@ class AddActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val SEARCH_ACTIVITY_REQUEST_CODE = 2
+        const val SEARCH_MOVIE_ACTIVITY_REQUEST_CODE = 2
     }
 }
