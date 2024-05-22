@@ -18,6 +18,8 @@ recyclerview = "1.3.2"
 retrofit = "2.11.0"
 converterGson = "2.11.0"
 roomKtx = "2.6.1"
+rxandroid = "2.1.1"
+rxjava = "2.2.21"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -42,6 +44,8 @@ moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "mosh
 picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "converterGson" }
+rxandroid = { module = "io.reactivex.rxjava2:rxandroid", version.ref = "rxandroid" }
+rxjava = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxjava" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -67,6 +67,9 @@ dependencies {
 
     implementation(libs.picasso)
 
+    implementation(libs.rxjava)
+    implementation(libs.rxandroid)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
