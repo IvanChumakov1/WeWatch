@@ -8,10 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.watch.Model.Item
+import com.example.watch.Model.Movie
 import com.example.watch.R
 import com.squareup.picasso.Picasso
 
-class SearchAdapter(var list: List<Item>, var listener: SearchActivity.RecyclerItemListener, var context: Context): RecyclerView.Adapter<SearchAdapter.SearchHolder>() {
+class SearchAdapter(var list: List<Movie>, var listener: SearchActivity.RecyclerItemListener, var context: Context): RecyclerView.Adapter<SearchAdapter.SearchHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -38,7 +39,7 @@ class SearchAdapter(var list: List<Item>, var listener: SearchActivity.RecyclerI
         return list.size
     }
 
-    fun getItemAtPosition(pos: Int): Item {
+    fun getItemAtPosition(pos: Int): Movie {
         return list[pos]
     }
 

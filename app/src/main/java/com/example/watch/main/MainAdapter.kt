@@ -28,12 +28,12 @@ class MainAdapter(var list: List<Movie>, var context: Context): RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        holder.titleTextView.text = list[position].title
-        holder.releaseDateTextView.text = list[position].year
-        if (list[position].posterUrl.equals("")) {
+        holder.titleTextView.text = list[position].imdbID
+        holder.releaseDateTextView.text = list[position].releaseDate
+        if (list[position].posterPath.equals("")) {
             holder.imageView.setImageDrawable(context.getDrawable(R.drawable.baseline_movie_gray))
         } else {
-            Picasso.get().load(list[position].posterUrl).into(holder.imageView)
+            Picasso.get().load(list[position].posterPath).into(holder.imageView)
         }
     }
 
@@ -46,7 +46,6 @@ class MainAdapter(var list: List<Movie>, var context: Context): RecyclerView.Ada
         var releaseDateTextView: TextView = view.findViewById(R.id.release_date_textview)
         var imageView: ImageView = view.findViewById(R.id.movie_imageview)
         var checkBox: CheckBox = view.findViewById(R.id.checkbox)
-
         init {
             checkBox.setOnClickListener {
                 val adapterPosition = adapterPosition
@@ -60,6 +59,5 @@ class MainAdapter(var list: List<Movie>, var context: Context): RecyclerView.Ada
             }
         }
     }
-
 
 }
