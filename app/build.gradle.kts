@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
 }
 
 android {
@@ -40,11 +41,40 @@ android {
 
 dependencies {
 
+    val moshi_version = "1.15.0"
+    val room_version = "2.6.1"
+
+    // Add RecyclerView
+    implementation(libs.androidx.recyclerview)
+    // Add LifeCycle&LiveData&ViewModel
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    // Add Room&Database
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    kapt("androidx.room:room-compiler:$room_version")
+    // Add Coroutines
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+
+    // Add Moshi
+    implementation (libs.moshi.kotlin)
+    implementation(libs.moshi)
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:$moshi_version")
+
+    implementation (libs.converter.moshi)
+
+
+    implementation(libs.picasso)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
