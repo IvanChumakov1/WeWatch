@@ -1,19 +1,18 @@
-package com.example.watch
+package com.example.watch.search
 
-import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.watch.API.ClientAPI
 import com.example.watch.Model.Item
+import com.example.watch.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -52,8 +51,8 @@ class SearchActivity : AppCompatActivity() {
             val response = clientApi.fetchResponse("6266644e",query)
             runOnUiThread {
                 list = response.items?: emptyList()
-                adapter = SearchAdapter(list,itemListener, this@SearchActivity)
-                recyclerView.adapter = adapter //SearchAdapter(list, itemListener, this@SearchActivity)
+                adapter = SearchAdapter(list, itemListener, this@SearchActivity)
+                recyclerView.adapter = adapter
                 progressBar.visibility = View.INVISIBLE
             }
             Log.d(TAG, "Response received: $response")
@@ -68,7 +67,7 @@ class SearchActivity : AppCompatActivity() {
             replyIntent.putExtra(EXTRA_TITLE, movie.title)
             replyIntent.putExtra(EXTRA_RELEASE_DATE, movie.getReleaseYearFromDate().toString())
             replyIntent.putExtra(EXTRA_POSTER_PATH, movie.posterPath)
-            setResult(Activity.RESULT_OK, replyIntent)
+            setResult(RESULT_OK, replyIntent)
 
             finish()
 

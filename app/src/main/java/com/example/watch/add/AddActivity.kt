@@ -1,4 +1,4 @@
-package com.example.watch
+package com.example.watch.add
 
 import android.app.Activity
 import android.content.Intent
@@ -15,6 +15,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.watch.Model.Movie
 import com.example.watch.Model.MovieDB
+import com.example.watch.R
+import com.example.watch.search.SearchActivity
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

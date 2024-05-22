@@ -1,4 +1,4 @@
-package com.example.watch
+package com.example.watch.main
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.watch.Model.Movie
+import com.example.watch.R
 import com.squareup.picasso.Picasso
 import java.util.HashSet
 
