@@ -8,7 +8,7 @@
     tools:context=".main.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
+        android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimaryInverse"
@@ -27,7 +27,8 @@
             android:layout_gravity="end"
             android:padding="8dp"
             android:onClick="deleteMovies"
-            app:srcCompat="@drawable/baseline_delete_24" />
+            app:srcCompat="@drawable/baseline_delete_24"
+            />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -39,7 +40,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <LinearLayout
         android:id="@+id/no_movies_layout"
@@ -83,6 +84,7 @@
         android:clickable="true"
         android:contentDescription="@string/add_movie"
         android:focusable="true"
+        android:onClick="goToAddMovieActivity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_input_add" />
