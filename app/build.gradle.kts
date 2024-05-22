@@ -69,6 +69,7 @@ dependencies {
 
     implementation(libs.rxjava)
     implementation(libs.rxandroid)
+    implementation (libs.adapter.rxjava2)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
